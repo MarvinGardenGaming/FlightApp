@@ -1,4 +1,5 @@
 import unirest
+from CheapestFlight import *
 
 response = unirest.post("https://skyscanner-skyscanner-flight-search-v1.p.rapidapi.com/apiservices/pricing/v1.0",
   headers={
@@ -53,5 +54,14 @@ print ("Inbound Flight ID: " + InboundFlightID)
 #Grab the pricing options for that specific outbound inbound flight
 pricingOptionsList = itenerariesDict["PricingOptions"]
 pricingOption = pricingOptionsList[0]
-price = pricingOption["Price"]
+price = str(pricingOption["Price"])
 print ("Price: " + str(price))
+currentCheapestFlight = CheapestFlight(price, 0)
+currentCheapestFlight.printFlightInfo()
+
+#Add loop that loops through each itinerary comparing prices
+#Save Prices to currentCheapestFlight
+#Send that flight info to heroku database
+
+#Add a loop that does all of the previous stuff for the next 100 days
+#Set that loop to run on a daily timer
